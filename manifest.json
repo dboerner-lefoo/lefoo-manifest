@@ -11,7 +11,7 @@
   "theme_color": "#a4d8e0",
   "icons": [
     {
-      "src": "https://images.squarespace-cdn.com/content/v1/5eed22db70040764cc5f58cb/370a8f94-5f70-4bb8-b546-348e4cd88bb0/favicon.ico",
+      "src": "https://images.squarespace-cdn.com/content/5eed22db70040764cc5f58cb/7851d76c-4cf6-452e-b63e-cc7f83e8fdd1/launchericon-512x512.png?content-type=image%2Fpng",
       "type": "image/x-icon",
       "sizes": "400x400",
       "isSquare": true,
@@ -24,7 +24,7 @@
       "is192x192": false
     },
     {
-      "src": "https://images.squarespace-cdn.com/content/v1/5eed22db70040764cc5f58cb/ee8f81f1-5f0e-4238-b270-87b3ba6e294e/favicon.ico",
+      "src": "https://images.squarespace-cdn.com/content/5eed22db70040764cc5f58cb/7851d76c-4cf6-452e-b63e-cc7f83e8fdd1/launchericon-512x512.png?content-type=image%2Fpng",
       "type": "image/x-icon",
       "sizes": "400x400",
       "isSquare": true,
@@ -37,7 +37,7 @@
       "is192x192": false
     },
     {
-      "src": "http://static1.squarespace.com/static/5eed22db70040764cc5f58cb/t/69eba5f19d1b5915b6c6d4a3/1777051121307/Logo_School.png?format=1500w",
+      "src": "https://images.squarespace-cdn.com/content/5eed22db70040764cc5f58cb/7851d76c-4cf6-452e-b63e-cc7f83e8fdd1/launchericon-512x512.png?content-type=image%2Fpng",
       "isSquare": false,
       "isPng": false,
       "isWebp": false,
@@ -48,7 +48,7 @@
       "is192x192": false
     },
     {
-      "src": "https://www.lefoo.de/favicon.ico",
+      "src": "https://images.squarespace-cdn.com/content/5eed22db70040764cc5f58cb/7851d76c-4cf6-452e-b63e-cc7f83e8fdd1/launchericon-512x512.png?content-type=image%2Fpng",
       "type": "image/x-icon",
       "sizes": "400x400",
       "isSquare": true,
