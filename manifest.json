@@ -2,7 +2,7 @@
   "background_color": "#19202a",
   "description": "Bildungs- und Forschungsangebote, Workshops und regionale Vernetzung im Odenwald. Ressourcen für Schüler, Lehrende und Unternehmen. Informationen, Termine und Kooperationen.",
   "dir": "ltr",
-  "display": "fullscreen",
+  "display": "standalone",
   "name": "LeFoO WebHub",
   "orientation": "portrait",
   "scope": "/",
@@ -12,14 +12,29 @@
   "lang": "de",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/dboerner-lefoo/lefoo-manifest/refs/heads/main/launchericon-512x512.png",
+      "src": "https://dboerner-lefoo.github.io/lefoo-manifest/launchericon-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "https://raw.githubusercontent.com/dboerner-lefoo/lefoo-manifest/refs/heads/main/launchericon-192x192.png",
+      "src": "https://dboerner-lefoo.github.io/lefoo-manifest/launchericon-512x512.png",
       "type": "image/png",
       "sizes": "192x192"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Personal",
+      "short_name": "Personal",
+      "description": "Ansprechbares Personal",
+      "url": "https://dboerner-lefoo.github.io/lefoo-manifest/personal.html",
+      "icons": [
+        {
+          "src": "https://dboerner-lefoo.github.io/lefoo-manifest/launchericon-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
