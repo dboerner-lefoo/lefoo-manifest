@@ -12,12 +12,12 @@
   "lang": "de",
   "icons": [
     {
-      "src": "https://github.com/dboerner-lefoo/lefoo-manifest/blob/main/launchericon-512x512.png",
+      "src": "https://raw.githubusercontent.com/dboerner-lefoo/lefoo-manifest/refs/heads/main/launchericon-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "https://github.com/dboerner-lefoo/lefoo-manifest/blob/main/launchericon-192x192.png",
+      "src": "https://raw.githubusercontent.com/dboerner-lefoo/lefoo-manifest/refs/heads/main/launchericon-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     }
