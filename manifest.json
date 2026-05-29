@@ -12,12 +12,12 @@
   "lang": "de",
   "icons": [
     {
-      "src": "https://images.squarespace-cdn.com/content/5eed22db70040764cc5f58cb/7851d76c-4cf6-452e-b63e-cc7f83e8fdd1/launchericon-512x512.png?content-type=image%2Fpng",
+      "src": "https://github.com/dboerner-lefoo/lefoo-manifest/blob/main/launchericon-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "https://images.squarespace-cdn.com/content/5eed22db70040764cc5f58cb/2ab43bce-6050-447e-a75f-b84e738e5414/launchericon-192x192.png?content-type=image%2Fpng",
+      "src": "https://github.com/dboerner-lefoo/lefoo-manifest/blob/main/launchericon-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     }
