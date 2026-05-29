@@ -1,0 +1,65 @@
+{
+  "background_color": "#19202a",
+  "description": "Bildungs- und Forschungsangebote, Workshops und regionale Vernetzung im Odenwald. Ressourcen für Schüler, Lehrende und Unternehmen. Informationen, Termine und Kooperationen.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "LeFoO WebHub",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "LeFoO",
+  "start_url": "/",
+  "theme_color": "#a4d8e0",
+  "icons": [
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/5eed22db70040764cc5f58cb/370a8f94-5f70-4bb8-b546-348e4cd88bb0/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "400x400",
+      "isSquare": true,
+      "isPng": false,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 400,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/5eed22db70040764cc5f58cb/ee8f81f1-5f0e-4238-b270-87b3ba6e294e/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "400x400",
+      "isSquare": true,
+      "isPng": false,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 400,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    },
+    {
+      "src": "http://static1.squarespace.com/static/5eed22db70040764cc5f58cb/t/69eba5f19d1b5915b6c6d4a3/1777051121307/Logo_School.png?format=1500w",
+      "isSquare": false,
+      "isPng": false,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 0,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    },
+    {
+      "src": "https://www.lefoo.de/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "400x400",
+      "isSquare": true,
+      "isPng": false,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 400,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    }
+  ],
+  "lang": "de"
+}
