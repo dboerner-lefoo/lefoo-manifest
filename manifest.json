@@ -2,7 +2,7 @@
   "background_color": "#19202a",
   "description": "Bildungs- und Forschungsangebote, Workshops und regionale Vernetzung im Odenwald. Ressourcen für Schüler, Lehrende und Unternehmen. Informationen, Termine und Kooperationen.",
   "dir": "ltr",
-  "display": "standalone",
+  "display": "fullscreen",
   "name": "LeFoO WebHub",
   "orientation": "portrait",
   "scope": "/",
