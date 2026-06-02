@@ -5,7 +5,7 @@
   "display": "standalone",
   "name": "LeFoO WebHub",
   "orientation": "portrait",
-  "scope": "/",
+  "scope": "https://dboerner-lefoo.github.io/lefoo-manifest/",
   "short_name": "LeFoO",
   "start_url": "https://dboerner-lefoo.github.io/lefoo-manifest/index.html",
   "theme_color": "#a4d8e0",
