@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.dboerner_lefoo.twa",
+        "sha256_cert_fingerprints": ["94:56:D3:28:F5:B8:77:B0:31:07:FE:25:D5:04:DE:2E:32:99:D6:50:01:DE:58:72:EF:2A:E3:28:26:14:E8:26"]
+      }
+    }]
