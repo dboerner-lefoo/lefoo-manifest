@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#19202a">
+  <title>LeFoO Personal</title>
+  <link rel="manifest" href="manifest-viewer.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #19202a;
+      --bg-card:   #222c38;
+      --accent:    #a4d8e0;
+      --text:      #ffffff;
+      --text-muted:#8a9bb0;
+      --present:   #4ade80;
+      --absent:    #f87171;
+      --radius:    14px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      padding: 0 0 40px;
+    }
+
+    header {
+      padding: 32px 24px 20px;
+      border-bottom: 1px solid rgba(164,216,224,0.12);
+    }
+
+    header h1 {
+      font-family: 'Headline Gothic ATF', 'Arial Narrow', Arial, sans-serif;
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 6px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 16px;
+      padding: 20px 24px;
+    }
+
+    .stat {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .stat-number.present { color: var(--present); }
+    .stat-number.absent  { color: var(--absent); }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .section-label {
+      padding: 0 24px 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+      padding: 0 24px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 20px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      border: 2px solid transparent;
+    }
+
+    .card.present { border-color: rgba(74,222,128,0.3); }
+    .card.absent  { opacity: 0.55; }
+
+    .avatar-wrap {
+      position: relative;
+      width: 72px;
+      height: 72px;
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .avatar-placeholder {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2e3f52, #3a5068);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .status-dot {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2.5px solid var(--bg-card);
+    }
+
+    .status-dot.present { background: var(--present); }
+    .status-dot.absent  { background: var(--absent); }
+
+    .card-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .card-role {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .card-status {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .card-status.present {
+      background: rgba(74,222,128,0.15);
+      color: var(--present);
+    }
+
+    .card-status.absent {
+      background: rgba(248,113,113,0.1);
+      color: var(--absent);
+    }
+
+    .website-btn {
+      display: block;
+      margin: 8px 24px 0;
+      padding: 14px;
+      background: var(--bg-card);
+      border: 1px solid rgba(164,216,224,0.2);
+      color: var(--accent);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: center;
+      text-decoration: none;
+      font-family: 'Roboto', sans-serif;
+      transition: background 0.15s;
+    }
+
+    .website-btn:hover { background: #2a3647; }
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      gap: 10px;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(164,216,224,0.2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 400px) {
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 16px; }
+      header { padding: 24px 16px 16px; }
+      .stats { padding: 16px; }
+      .section-label { padding: 0 16px 10px; }
+      .website-btn { margin: 8px 16px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>LeFoO Personal</h1>
+    <p id="last-update">Wird geladen...</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number present" id="count-present">–</div>
+      <div class="stat-label">Anwesend</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number absent" id="count-absent">–</div>
+      <div class="stat-label">Abwesend</div>
+    </div>
+  </div>
+
+  <div id="content">
+    <div class="loading"><div class="spinner"></div> Laden...</div>
+  </div>
+
+  <a href="https://lefoo.de" class="website-btn">lefoo.de besuchen</a>
+
+  <script>
+    const API = 'https://script.google.com/macros/s/AKfycbwjfBDaRjwJBFamOpMbJ43WwNl5etFp6l3AVGHy80hTdpgJhN_b5Hq0sYVxCx5fq6GF/exec';
+
+    function getInitials(name) {
+      return name.split(' ').filter(Boolean).slice(0, 2).map(n => n[0]).join('').toUpperCase();
+    }
+
+    function formatTime(iso) {
+      const d = new Date(iso);
+      return d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function buildCard(person) {
+      const cls = person.present ? 'present' : 'absent';
+      const statusLabel = person.present ? 'Anwesend' : 'Abwesend';
+      const avatar = person.photo
+        ? `<img class="avatar" src="${person.photo}" alt="${person.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+        : '';
+      const placeholder = `<div class="avatar-placeholder" style="${person.photo ? 'display:none' : ''}">${getInitials(person.name)}</div>`;
+
+      return `
+        <div class="card ${cls}">
+          <div class="avatar-wrap">
+            ${avatar}
+            ${placeholder}
+            <div class="status-dot ${cls}"></div>
+          </div>
+          <div class="card-name">${person.name}</div>
+          <div class="card-role">${person.role}</div>
+          <div class="card-status ${cls}">${statusLabel}</div>
+        </div>`;
+    }
+
+    function renderContent(staff) {
+      const present = staff.filter(s => s.present);
+      const absent  = staff.filter(s => !s.present);
+
+      document.getElementById('count-present').textContent = present.length;
+      document.getElementById('count-absent').textContent  = absent.length;
+
+      let html = '';
+
+      html += `<div class="section-label">Anwesend (${present.length})</div>`;
+      html += `<div class="grid">${present.length ? present.map(buildCard).join('') : '<div style="grid-column:1/-1;color:var(--text-muted);font-size:0.85rem;padding:8px 0">Niemand anwesend</div>'}</div>`;
+
+      html += `<div class="section-label">Abwesend (${absent.length})</div>`;
+      html += `<div class="grid">${absent.map(buildCard).join('')}</div>`;
+
+      document.getElementById('content').innerHTML = html;
+    }
+
+    async function loadStaff() {
+      try {
+        const res = await fetch(`${API}?action=read`);
+        const data = await res.json();
+        renderContent(data.staff);
+        document.getElementById('last-update').textContent = 'Stand: ' + formatTime(data.updated);
+      } catch (e) {
+        document.getElementById('content').innerHTML = `<div style="text-align:center;padding:40px 24px;color:var(--absent);font-size:0.9rem">Verbindung fehlgeschlagen.</div>`;
+      }
+    }
+
+    loadStaff();
+    setInterval(loadStaff, 60000);
+  </script>
+</body>
+</html>

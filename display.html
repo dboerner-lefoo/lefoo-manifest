@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>LeFoO Anwesenheit</title>
+  <link rel="manifest" href="manifest-display.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #ffffff;
+      --bg-card:  #f4f7f8;
+      --accent:   #00ae42;
+      --text:     #000000;
+      --text-muted: #6b7280;
+      --radius:   16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 36px 48px 24px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 2px solid #e8f5ec;
+    }
+
+    .header-left h1 {
+      font-family: 'Headline Gothic ATF', 'Arial Narrow', Arial, sans-serif;
+      font-style: italic;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .header-left p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    .header-right {
+      text-align: right;
+    }
+
+    .count-badge {
+      background: var(--accent);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 30px;
+      display: inline-block;
+    }
+
+    .empty-state {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: var(--text-muted);
+    }
+
+    .empty-state svg {
+      width: 64px;
+      height: 64px;
+      opacity: 0.3;
+    }
+
+    .empty-state p {
+      font-size: 1.1rem;
+    }
+
+    .grid-wrap {
+      flex: 1;
+      padding: 36px 48px;
+      overflow: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 28px 20px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      border: 2px solid #e0f2e8;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 3px solid var(--accent);
+    }
+
+    .avatar-placeholder {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e0f2e8, #c5e8d0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      border: 3px solid var(--accent);
+    }
+
+    .card-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    .card-role {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .present-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(0,174,66,0.12);
+      color: var(--accent);
+    }
+
+    .loading {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(0,174,66,0.2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    footer {
+      padding: 12px 48px;
+      border-top: 1px solid #e8f5ec;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Headline Gothic ATF', 'Arial Narrow', Arial, sans-serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    .footer-time {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Pulse dot in footer for live indicator */
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 6px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.85); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <h1>Heute anwesend</h1>
+      <p id="last-update">Wird geladen...</p>
+    </div>
+    <div class="header-right">
+      <div class="count-badge" id="count-badge" style="display:none"></div>
+    </div>
+  </header>
+
+  <div id="main" class="loading">
+    <div class="spinner"></div> Laden...
+  </div>
+
+  <footer>
+    <div class="footer-logo">LeFoO</div>
+    <div class="footer-time"><span class="live-dot"></span><span id="clock"></span></div>
+  </footer>
+
+  <script>
+    const API = 'https://script.google.com/macros/s/AKfycbwjfBDaRjwJBFamOpMbJ43WwNl5etFp6l3AVGHy80hTdpgJhN_b5Hq0sYVxCx5fq6GF/exec';
+    let lastHash = '';
+
+    function getInitials(name) {
+      return name.split(' ').filter(Boolean).slice(0, 2).map(n => n[0]).join('').toUpperCase();
+    }
+
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clock').textContent = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function renderPresent(staff) {
+      const present = staff.filter(s => s.present);
+      const main = document.getElementById('main');
+      const badge = document.getElementById('count-badge');
+
+      badge.style.display = present.length ? 'inline-block' : 'none';
+      badge.textContent = `${present.length} anwesend`;
+
+      if (!present.length) {
+        main.className = 'empty-state';
+        main.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <p>Aktuell niemand anwesend</p>`;
+        return;
+      }
+
+      const cards = present.map(person => {
+        const avatar = person.photo
+          ? `<img class="avatar" src="${person.photo}" alt="${person.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+          : '';
+        const placeholder = `<div class="avatar-placeholder" style="${person.photo ? 'display:none' : ''}">${getInitials(person.name)}</div>`;
+
+        return `
+          <div class="card">
+            ${avatar}
+            ${placeholder}
+            <div class="card-name">${person.name}</div>
+            <div class="card-role">${person.role}</div>
+            <div class="present-badge">Anwesend</div>
+          </div>`;
+      }).join('');
+
+      main.className = 'grid-wrap';
+      main.innerHTML = `<div class="grid">${cards}</div>`;
+    }
+
+    async function loadStaff() {
+      try {
+        const res = await fetch(`${API}?action=read&t=${Date.now()}`);
+        const data = await res.json();
+        const hash = JSON.stringify(data.staff.map(s => s.present));
+
+        if (hash !== lastHash) {
+          lastHash = hash;
+          renderPresent(data.staff);
+        }
+
+        const now = new Date();
+        document.getElementById('last-update').textContent =
+          'Zuletzt aktualisiert: ' + now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+      } catch (e) {
+        // Silently retry, don't break the display
+      }
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+    loadStaff();
+    setInterval(loadStaff, 15000); // Refresh every 15s for near-realtime display
+  </script>
+</body>
+</html>
